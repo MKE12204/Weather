@@ -1,0 +1,141 @@
+@import "../css/reset.css";
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+body{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    font-family: 'Rubik', sans-serif;
+    row-gap: 50px;
+}
+
+
+/* Header */
+
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 15px 50px;
+    background: linear-gradient(92.7deg, #4CBBC4 0%, #3CD3AD 100%), #232323;
+}
+
+.title{
+    margin-bottom: 20px ;
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 52px;
+    color: #FFFFFF;
+}
+
+.form{
+    display: flex;
+    max-width: 460px;
+    height: 54px;
+    background: #FFFFFF;
+    border-radius: 6px;
+}   
+
+.input{
+    padding: 15px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1;
+    color:#000000;
+    border: none;
+}
+
+.btn{
+    width: 145px;
+    height: 54px;
+    background: #E5464F ;
+    color: white;
+    border-radius: 6px;
+    font-weight: 500 ;
+    font-size: 20px;
+    line-height: 1;
+    border: none;
+    transition: background-color 0.2s ease-in;
+}
+
+
+.btn:hover{
+    background: #f5000c ;
+}
+
+
+/* Card */
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 30px;
+    width: 360px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 5px 20px rgba(27,100,114,0.25);
+}
+
+.card::before{
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+    z-index: -1;
+    content: "";
+    display: block;
+    width: calc(100% - 20px);
+    height: 100%;
+    background-color: red;
+    background: #fff;
+    box-shadow: 0px 5px 20px rgba(27,108,114,0.25);
+
+}
+
+.card-city{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.card-city span{
+    display: inline-block;
+    vertical-align: text-top;
+    padding: 3px 5px;
+    background: #E5464f;
+    border-radius: 6px;
+    color: #fff;
+    font-size:12px ;
+    font-weight: 500;
+    line-height: 1;
+}
+.card-weather{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    font-family: 'Rubik';
+
+}
+
+.card-value{
+    font-size: 92px;
+    line-height: 1;
+}
+
+.card-value sup {
+    font-size: 0.5em;       /* Уменьшаем размер в два раза */
+    margin-left: 2px;       /* Небольшой отступ от цифр */
+    letter-spacing: 1px;    /* Добавляем мизерный просвет между ° и C */
+}
+.card-desc{
+  font-family: 'Rubik';
+  font-size: 20px;       
+  line-height: 1.2;
+}
+
