@@ -1,7 +1,10 @@
+import condition from "./condition.js";
+
 let apiKey = "d0086b90d3024ca28c0112408260305";
 const getHeader = document.querySelector("header")
 const getForm = document.querySelector("form");
 const getInput = document.querySelector("input");
+
 
 function removeCard(){
     const prevCard = document.querySelector('.card');
@@ -36,27 +39,46 @@ async function getWeather (city){
     return data;
 };
 
-
-
+const languageDetector = {
+    ru: /[а-яё]/i,         // Кириллица
+    uk: /[ґєії]/i,         // Украинский
+    pl: /[ąćęłńóśźż]/i,     // Польский
+    ar: /[\u0600-\u06FF]/, // Арабский 
+    zh: /[\u4e00-\u9fa5]/, // Китайский
+    ja: /[\u3040-\u30ff]/  // Японский
+};  
 
 getForm.onsubmit = async function(e) {
     e.preventDefault();
     let city = getInput.value.trim();
     if (!city) return; 
+    let lang = 'en'
+    for(let key in languageDetector){
+        if(languageDetector[key].test(city)){
+            lang = key;
+            break;
+        }
+    }
 
     getInput.value = "";
 
-    
     removeCard();
-
-
     try {
-        const data = await getWeather(city);
+        const data = await getWeather(city); 
+        const info = condition.find(obj => obj.code === data.current.condition.code);
+        let weatherText = data.current.condition.text;
+        if (info) {
+            const translation = info.languages.find(l => l.lang_iso === lang);
+            
+            if (translation) {
+                weatherText = data.current.is_day ? translation.day_text : translation.night_text;
+            }
+        }
         showCard(data.location.name,
             data.location.country,
             data.current.temp_c,
             data.current.condition.icon,
-            data.current.condition.text);
+            weatherText);
     }catch {
         showError();
     }; 
